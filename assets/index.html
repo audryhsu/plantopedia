@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plant-o-pedia</title>
+</head>
+<body>
+  <h1>Plant Directory</h1>
+  <div>
+    <table>
+      <tr>
+        <th>Species</th>
+        <th>Description</th>
+      </tr>
+    </table>
+  </div>
+  <h2>Add a Plant</h2>
+  <form action="/plant" method="post">
+    <label>Species</label>
+    <input type="text">
+    <label>Description</label>
+    <input type="text">
+    <input type="submit" value="Save">
+  </form>
+  <script>
+    let plantTable = document.body.querySelector("table")
+
+    const getPlants = async () => {
+      let response = await fetch("/plant");
+      let plants = await response.json()
+      plants.forEach(p => {
+        let row = document.createElement("tr")
+        let species = document.createElement("td")
+        species.innerHTML = p.species
+        let description = document.createElement("td")
+        description.innerHTML = p.description
+
+        row.appendChild(species)
+        row.appendChild(description)
+
+        plantTable.appendChild(row)
+      });
+    }
+    
+    getPlants();
+  </script>
+</body>
+</html>
