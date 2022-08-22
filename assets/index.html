@@ -4,9 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Plant-o-pedia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;900&family=Titan+One&display=swap" rel="stylesheet">
+<link href="styles.css" rel="stylesheet">
+  <title>Plantopedia</title>
 </head>
 <body>
+  <span class="img-container">
+    <img src="images/vecteezy_plant-in-pot-icon_9376677_486.png" alt="">
+  </span>
   <h1>Plant Directory</h1>
   <div>
     <table>
@@ -16,15 +25,17 @@
       </tr>
     </table>
   </div>
-  <h2>Add a Plant</h2>
-  <form action="/plant" method="post">
-    <label>Species</label>
-    <input type="text">
-    <label>Description</label>
-    <input type="text">
-    <input type="submit" value="Save">
-  </form>
-  <script>
+  <div class="form-container">
+    <h2>Add a Plant</h2>
+    <form action="/plant" method="post">
+      <label>Species</label>
+      <input type="text">
+      <label>Description</label>
+      <input type="text">
+      <input type="submit" value="Save" class="button">
+    </form>
+    </div>
+    <script>
     let plantTable = document.body.querySelector("table")
 
     const getPlants = async () => {
