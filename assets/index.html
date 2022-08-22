@@ -4,33 +4,38 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="/assets/styles.css" rel="stylesheet" type="text/css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;600;900&family=Titan+One&display=swap" rel="stylesheet">
-<link href="styles.css" rel="stylesheet">
   <title>Plantopedia</title>
 </head>
 <body>
   <span class="img-container">
     <img src="images/vecteezy_plant-in-pot-icon_9376677_486.png" alt="">
+    <img src="images/vecteezy_plant-in-pot-icon_9376678_786.png" alt="">
+    <img src="images/vecteezy_plant-in-pot-icon_9376679_475.png" alt="">
   </span>
-  <h1>Plant Directory</h1>
-  <div>
+  <h1 class="h1">Plant Directory</h1>
+  <div class="table container">
     <table>
       <tr>
-        <th>Species</th>
-        <th>Description</th>
+        <th class="species">Species</th>
+        <th class="description">Description</th>
+        <th class="water">Water</th>
       </tr>
     </table>
   </div>
-  <div class="form-container">
+  <div class="form container">
     <h2>Add a Plant</h2>
-    <form action="/plant" method="post">
+    <form action="/plants" method="post">
       <label>Species</label>
       <input type="text">
       <label>Description</label>
+      <input type="text">
+      <label>Water</label>
       <input type="text">
       <input type="submit" value="Save" class="button">
     </form>
@@ -39,7 +44,7 @@
     let plantTable = document.body.querySelector("table")
 
     const getPlants = async () => {
-      let response = await fetch("/plant");
+      let response = await fetch("/plants");
       let plants = await response.json()
       plants.forEach(p => {
         let row = document.createElement("tr")
@@ -48,8 +53,13 @@
         let description = document.createElement("td")
         description.innerHTML = p.description
 
+        let water = document.createElement("td")
+        let dropletChar = "&#128167";
+        water.innerHTML = dropletChar.repeat(p.water)
+
         row.appendChild(species)
         row.appendChild(description)
+        row.appendChild(water)
 
         plantTable.appendChild(row)
       });
